@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoBank - Seu Banco Digital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Login/Register Section -->
+        <section id="auth-section" class="section">
+            <div class="auth-container">
+                <div class="logo">
+                    <h1>NeoBank</h1>
+                    <p>Seu banco digital do futuro</p>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form" class="form-container">
+                    <h2>Entrar</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Senha</label>
+                            <input type="password" id="login-password" required placeholder="********">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </form>
+                    <p class="switch-form">
+                        Ainda nao tem conta? <a href="#" onclick="showRegister()">Cadastre-se</a>
+                    </p>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="form-container hidden">
+                    <h2>Criar Conta</h2>
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="register-name">Nome Completo</label>
+                            <input type="text" id="register-name" required placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-cpf">CPF</label>
+                            <input type="text" id="register-cpf" required placeholder="00000000000" maxlength="11">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-phone">Telefone</label>
+                            <input type="text" id="register-phone" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Senha</label>
+                            <input type="password" id="register-password" required placeholder="Min. 6 caracteres" minlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
+                    <p class="switch-form">
+                        Ja tem uma conta? <a href="#" onclick="showLogin()">Entrar</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="section hidden">
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>NeoBank</h1>
+                </div>
+                <div class="header-right">
+                    <span id="user-name">Usuario</span>
+                    <button onclick="handleLogout()" class="btn btn-outline">Sair</button>
+                </div>
+            </header>
+
+            <main class="dashboard-main">
+                <!-- Account Summary -->
+                <div class="card account-summary">
+                    <h3>Minhas Contas</h3>
+                    <div id="accounts-list" class="accounts-list">
+                        <!-- Contas serao carregadas aqui -->
+                    </div>
+                    <button onclick="showCreateAccount()" class="btn btn-secondary">+ Nova Conta</button>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card quick-actions">
+                    <h3>Acoes Rapidas</h3>
+                    <div class="actions-grid">
+                        <button onclick="showDepositModal()" class="action-btn">
+                            <span class="action-icon">+</span>
+                            <span>Depositar</span>
+                        </button>
+                        <button onclick="showWithdrawModal()" class="action-btn">
+                            <span class="action-icon">-</span>
+                            <span>Sacar</span>
+                        </button>
+                        <button onclick="showTransferModal()" class="action-btn">
+                            <span class="action-icon">-></span>
+                            <span>Transferir</span>
+                        </button>
+                        <button onclick="showStatementModal()" class="action-btn">
+                            <span class="action-icon">$</span>
+                            <span>Extrato</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="card transactions-card">
+                    <h3>Transacoes Recentes</h3>
+                    <div id="transactions-list" class="transactions-list">
+                        <!-- Transacoes serao carregadas aqui -->
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Modal Container -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div id="modal-content" class="modal-content">
+                <!-- Modal content will be dynamically inserted -->
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">
+            <span id="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
